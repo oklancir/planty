@@ -1,0 +1,19 @@
+.plant-gallery {
+  background-color: #cfe6e3;
+  width: 100%;
+  padding: 30px;
+}
+
+.title {
+  padding: 60px 0;
+}
+
+.row {
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-container.container {
+  width: fit-content;
+  padding-bottom: 100px;
+}

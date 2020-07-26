@@ -1,0 +1,137 @@
+.login-body {
+  height: 100vh;
+  background-image: url("../../Images/monstera-vector.svg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  align-content: center;
+}
+
+.login-form {
+  backdrop-filter: blur(10px);
+  width: 300px;
+  height: 400px;
+  backdrop-filter: saturate(180%) blur(10x);
+  display: inline-block;
+  line-height: 1.5;
+  vertical-align: middle;
+  border-radius: 1em;
+  color: #fcb1f2;
+}
+
+.login-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 400px;
+  height: 400px;
+  text-align: center;
+  width: 650px;
+}
+
+.login-logo {
+  font-family: "PacificoRegular";
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 50px;
+}
+
+@media screen and (max-width: 650px) {
+  .login-container {
+    width: 350px;
+    height: 290px;
+    top: 10%;
+  }
+
+  .login-logo {
+    margin-right: 0px;
+  }
+
+  .login-form {
+    margin-top: -200px;
+  }
+}
+
+.login-logo h1 {
+  font-size: 6rem;
+  color: #fbffb0;
+}
+
+.login-form-title {
+  font-size: 1.7em;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 30px;
+  text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
+}
+
+.login-form-title.sign-up {
+  margin: 0;
+}
+
+.login.form-control:focus,
+.login.form-control:active {
+  border-color: #fcb1f2 !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #fcb1f2;
+  background-color: transparent !important;
+  color: #2f3c55 !important;
+}
+
+#login-email,
+#login-pass {
+  background-color: #fbffb0 !important;
+  border: 1px solid #fcb1f2;
+  color: #2f3c55;
+  margin: 10px 20px;
+  width: 260px;
+}
+
+#login-email.sign-up,
+#login-pass.sign-up {
+  margin: 0 20px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #2f3c55;
+}
+
+#login-btn {
+  background-color: #fcb1f2;
+  border-color: #fcb1f2 !important;
+  margin: 15px 5px;
+  color: #2f3c55;
+  width: 125px;
+}
+
+#signup-btn {
+  background-color: #2f3c55;
+  border-color: #fcb1f2 !important;
+  margin: 15px 5px;
+  color: #fcb1f2;
+  width: 125px;
+}
+
+.form-group {
+  margin-top: 25px;
+}
+
+#login-btn:active,
+#login-btn:focus {
+  border-color: #fcb1f2 !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #fcb1f2;
+}
+
+.form-group.sign-up {
+  margin-top: 15px;
+}

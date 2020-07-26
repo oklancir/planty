@@ -1,0 +1,105 @@
+.cart-items {
+  list-style: none;
+  text-align: left;
+}
+
+.cart-container {
+  background-color: #fbffb0;
+  width: 100%;
+  padding: 30px;
+}
+
+.title {
+  padding-bottom: 60px;
+}
+
+.bi-plus,
+.bi-dash,
+.bi-x {
+  padding-bottom: 3px;
+  cursor: pointer;
+  color: #212529;
+}
+
+.img,
+.img.col {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.list-item {
+  padding: 10px;
+}
+
+.details-row {
+  align-self: baseline;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.quantity-plus-minus {
+  border: 1px solid #7da8a6;
+  border-radius: 1em;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  padding: 35px 5px;
+  display: inline-block;
+}
+
+.totals-row {
+  text-align: start;
+}
+
+.total {
+  font-weight: 600;
+}
+
+.remove {
+  border: 1px solid #7da8a6;
+  border-radius: 1em;
+  text-align: center;
+  justify-content: center;
+  padding: 15px;
+  display: inline-block;
+  margin-left: 15px;
+  background-color: transparent;
+}
+
+.bi.bi-x:hover,
+.bi.bi-dash:hover,
+.bi.bi-plus:hover {
+  color: #55807e;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-transparent:focus,
+.remove:focus {
+  outline: none !important;
+  outline-offset: none !important;
+}
+
+.img-plants {
+  width: 47%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 70px;
+}
+
+.img-container-cart {
+  text-align: center;
+}
+
+.totals {
+  margin-top: 40px;
+  text-align: center;
+}
