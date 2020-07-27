@@ -8,10 +8,6 @@
         <CodeAnalysisRuleSet>$(SolutionDir)Analyzers\analyzers.ruleset</CodeAnalysisRuleSet>
         <AssemblyName>Planty.Data</AssemblyName>
     </PropertyGroup>
-    
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
