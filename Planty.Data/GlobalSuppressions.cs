@@ -12,3 +12,15 @@ using System.Diagnostics.CodeAnalysis;
     Scope = "member",
     Target = "~M:Planty.Data.Interfaces.IReadOnlyDatabaseContext.Set``1~Microsoft.EntityFrameworkCore.DbSet{``0}")]
 [assembly: SuppressMessage("Info Code Smell", "S1309:Track uses of in-source issue suppressions", Justification = "Some rules need suppression.")]
+[assembly: SuppressMessage(
+    "Minor Code Smell",
+    "S4261:Methods should be named according to their synchronicities",
+    Justification = "DbContext Set()",
+    Scope = "member",
+    Target = "~M:Planty.Data.Interfaces.IReadOnlyDatabaseContext.Set``1~Microsoft.EntityFrameworkCore.DbSet{``0}")]
+[assembly: SuppressMessage(
+    "Minor Code Smell",
+    "S4018:Generic methods should provide type parameters",
+    Justification = "Return type parameter",
+    Scope = "member",
+    Target = "~M:Planty.Data.Interfaces.IReadOnlyDatabaseContext.Set``1~Microsoft.EntityFrameworkCore.DbSet{``0}")]

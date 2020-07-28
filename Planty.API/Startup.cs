@@ -17,20 +17,6 @@ namespace Planty.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllersWithViews();
-
-            services.AddScoped(ReadOnlyDatabaseContextFactory.Instance(Configuration));
-
-            // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/build";
-            });
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -72,6 +58,20 @@ namespace Planty.API
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
+            });
+        }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
+
+            services.AddScoped(ReadOnlyDatabaseContextFactory.Instance(Configuration));
+
+            // In production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/build";
             });
         }
     }
