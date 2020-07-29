@@ -24,3 +24,9 @@ using System.Diagnostics.CodeAnalysis;
     Justification = "Return type parameter",
     Scope = "member",
     Target = "~M:Planty.Data.Interfaces.IReadOnlyDatabaseContext.Set``1~Microsoft.EntityFrameworkCore.DbSet{``0}")]
+[assembly: SuppressMessage(
+    "Design",
+    "CA1062:Validate arguments of public methods",
+    Justification = "Validation method is called",
+    Scope = "member",
+    Target = "~M:Planty.Data.Context.DatabaseContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)")]

@@ -12,7 +12,7 @@
         {
             return provider =>
             {
-                var connnectionString = configuration?.GetConnectionString("Planty_DB");
+                var connnectionString = configuration?.GetConnectionString("PlantyConnection");
 
                 if (string.IsNullOrWhiteSpace(connnectionString))
                 {
