@@ -8,7 +8,12 @@ namespace Planty.API
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Planty.API.Config;
+    using Planty.Business;
+    using Planty.Business.Services;
     using Planty.Data.Context;
+    using Planty.Data.Entities;
+    using Planty.Data.Interfaces;
+    using Planty.Data.Repositories;
 
     public class Startup
     {
@@ -70,6 +75,10 @@ namespace Planty.API
 
             services.AddScoped(ReadOnlyDatabaseContextFactory.Instance(Configuration));
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PlantyConnection")));
+            services.AddScoped<IGenericRepository<Plant>, GenericRepository<Plant>>();
+            services.AddScoped<IDatabaseScope, DatabaseScope>();
+
+            services.AddScoped<IPlantService, PlantService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

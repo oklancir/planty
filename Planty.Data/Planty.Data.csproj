@@ -34,4 +34,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Planty.Common\Planty.Common.csproj" />
+  </ItemGroup>
+
 </Project>

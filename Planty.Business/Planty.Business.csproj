@@ -24,4 +24,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Planty.Data\Planty.Data.csproj" />
+  </ItemGroup>
+
 </Project>
