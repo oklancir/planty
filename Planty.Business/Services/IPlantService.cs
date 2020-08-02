@@ -9,9 +9,9 @@
     {
         Task<IEnumerable<Plant>> GetAllAsync();
 
-        Task<Plant> CreateAsync(PlantBase plant);
+        Task<Plant> CreateAsync(PlantBase model);
 
-        Task<Plant> UpdateAsync(Guid id, PlantBase plant);
+        Task<Plant> UpdateAsync(Guid id, PlantBase model);
 
         Task DeleteAsync(Guid id);
 
