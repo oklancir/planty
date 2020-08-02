@@ -2,6 +2,8 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using Planty.Data.Context;
     using Planty.Data.Interfaces;
 
@@ -18,21 +20,16 @@
             }
         }
 
-        public IQueryable<TEntity> All { get; }
+        public IQueryable<TEntity> All { get => _context.Set<TEntity>(); }
 
-        public TEntity GetById(Guid id)
+        public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return _context.Set<TEntity>().SingleOrDefault(s => s.Id == id);
+            return await _context.Set<TEntity>().SingleOrDefaultAsync(s => s.Id == id);
         }
 
-        public void Insert(TEntity entity)
+        public async Task InsertAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-
-            _context.Set<TEntity>().Add(entity);
+            await _context.Set<TEntity>().AddAsync(entity);
         }
 
         public void Delete(TEntity entity)

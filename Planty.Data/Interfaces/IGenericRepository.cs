@@ -2,15 +2,16 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public interface IGenericRepository<TEntity>
         where TEntity : class, IEntity
     {
         IQueryable<TEntity> All { get; }
 
-        TEntity GetById(Guid id);
+        Task<TEntity> GetByIdAsync(Guid id);
 
-        void Insert(TEntity entity);
+        Task InsertAsync(TEntity entity);
 
         void Delete(TEntity entity);
     }
