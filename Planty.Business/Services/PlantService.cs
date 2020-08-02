@@ -3,73 +3,81 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
+    using Planty.Business.Models;
     using Planty.Common.Extensions;
-    using Planty.Data.Entities;
     using Planty.Data.Interfaces;
+    using Entities = Planty.Data.Entities;
 
     public class PlantService : IPlantService
     {
-        private readonly IGenericRepository<Plant> _genericRepository;
-
+        private readonly IGenericRepository<Entities.Plant> _genericRepository;
         private readonly IDatabaseScope _databaseScope;
+        private readonly IMapper _mapper;
 
-        public PlantService(IGenericRepository<Plant> genericRepository, IDatabaseScope databaseScope)
+        public PlantService(IGenericRepository<Entities.Plant> genericRepository, IDatabaseScope databaseScope, IMapper mapper)
         {
             _genericRepository = genericRepository;
             _databaseScope = databaseScope;
+            _mapper = mapper;
         }
 
-        public async Task<Plant> CreateAsync(Plant plant)
+        public async Task<Plant> CreateAsync(PlantBase model)
         {
-            await _genericRepository.InsertAsync(plant);
-            return plant;
+            model.ValidateIsNotNull(nameof(model));
+
+            var entity = new Entities.Plant();
+            UpdateEntity(model, entity);
+
+            await _genericRepository.InsertAsync(entity);
+            await _databaseScope.SaveChangesAsync();
+
+            return _mapper.Map<Plant>(entity);
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var plant = await _genericRepository.GetByIdAsync(id);
+            var entity = await _genericRepository.GetByIdAsync(id);
+            entity.ValidateIsNotNull(nameof(entity));
 
-            plant.ValidateIsNotNull(nameof(plant));
-
-            _genericRepository.Delete(plant);
+            _genericRepository.Delete(entity);
             await _databaseScope.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Plant>> GetAllAsync()
         {
-            return await _genericRepository.All.ToListAsync();
+            return await _genericRepository.All.ProjectTo<Plant>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async Task<Plant> GetByIdAsync(Guid id)
         {
-            var plant = await _genericRepository.GetByIdAsync(id);
-
-            plant.ValidateIsNotNull(nameof(plant));
-
-            // TODO: Setup AutoMapper for DTOs
-            return plant;
-        }
-
-        public async Task<IEnumerable<Plant>> GetByTypeIdAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task UpdateAsync(Guid id, Plant plant)
-        {
-            plant.ValidateIsNotNull(nameof(plant));
-
             var entity = await _genericRepository.GetByIdAsync(id);
-
             entity.ValidateIsNotNull(nameof(entity));
 
-            entity.LatinName = plant.LatinName;
-            entity.Name = plant.Name;
-            entity.Price = plant.Price;
-            entity.Quantity = plant.Quantity;
+            return _mapper.Map<Plant>(entity);
+        }
+
+        public async Task<Plant> UpdateAsync(Guid id, PlantBase model)
+        {
+            model.ValidateIsNotNull(nameof(model));
+
+            var entity = await _genericRepository.GetByIdAsync(id);
+            entity.ValidateIsNotNull(nameof(entity));
+            UpdateEntity(model, entity);
 
             await _databaseScope.SaveChangesAsync();
+
+            return _mapper.Map<Plant>(entity);
+        }
+
+        private static void UpdateEntity(PlantBase model, Entities.Plant entity)
+        {
+            entity.Name = model.Name;
+            entity.LatinName = model.LatinName;
+            entity.Price = model.Price;
+            entity.Quantity = model.Quantity;
         }
     }
 }

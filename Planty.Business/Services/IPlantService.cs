@@ -3,20 +3,18 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Planty.Data.Entities;
+    using Planty.Business.Models;
 
     public interface IPlantService
     {
         Task<IEnumerable<Plant>> GetAllAsync();
 
-        Task<Plant> CreateAsync(Plant plant);
+        Task<Plant> CreateAsync(PlantBase plant);
 
-        Task UpdateAsync(Guid id, Plant plant);
+        Task<Plant> UpdateAsync(Guid id, PlantBase plant);
 
         Task DeleteAsync(Guid id);
 
         Task<Plant> GetByIdAsync(Guid id);
-
-        Task<IEnumerable<Plant>> GetByTypeIdAsync();
     }
 }
