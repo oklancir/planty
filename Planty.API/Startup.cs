@@ -1,5 +1,6 @@
 namespace Planty.API
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -79,6 +80,8 @@ namespace Planty.API
             services.AddScoped<IDatabaseScope, DatabaseScope>();
 
             services.AddScoped<IPlantService, PlantService>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
