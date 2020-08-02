@@ -14,13 +14,11 @@
 
         public DbSet<Plant> Plants { get; set; }
 
-        public DbSet<Product> Products { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ValidateIsNotNull(nameof(modelBuilder));
 
-            modelBuilder.Entity<Product>()
+            modelBuilder.Entity<Plant>()
                 .Property(e => e.Price).HasColumnType("decimal(18,2)");
         }
     }

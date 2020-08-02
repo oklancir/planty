@@ -3,11 +3,11 @@
     using System;
     using Planty.Data.Interfaces;
 
-    public class Product : IEntity
+    public interface IProduct : IEntity
     {
-        public Guid Id { get; set; }
+        public new Guid Id { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public new DateTime CreatedAt { get; set; }
 
         public decimal Price { get; set; }
 
