@@ -81,7 +81,10 @@ namespace Planty.API
 
             services.AddScoped<IPlantService, PlantService>();
 
-            services.AddAutoMapper(typeof(Startup));
+            var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
+            var mapper = mapperConfig.CreateMapper();
+
+            services.AddSingleton(mapper);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
