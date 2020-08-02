@@ -46,10 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Planty.Business\Planty.Business.csproj" />
     <ProjectReference Include="..\Planty.Data\Planty.Data.csproj" />
   </ItemGroup>
