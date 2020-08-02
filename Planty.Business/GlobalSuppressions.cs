@@ -11,4 +11,10 @@ using System.Diagnostics.CodeAnalysis;
     Justification = "ValidateIsNotNull",
     Scope = "member",
     Target = "~M:Planty.Business.Services.PlantService.UpdateAsync(System.Guid,Planty.Data.Entities.Plant)~System.Threading.Tasks.Task")]
-[assembly: SuppressMessage("Major Code Smell", "S3900:Arguments of public methods should be validated against null", Justification = "ValidateIsNotNull", Scope = "member", Target = "~M:Planty.Business.Services.PlantService.UpdateAsync(System.Guid,Planty.Data.Entities.Plant)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage(
+    "Major Code Smell",
+    "S3900:Arguments of public methods should be validated against null",
+    Justification = "ValidateIsNotNull",
+    Scope = "member",
+    Target = "~M:Planty.Business.Services.PlantService.UpdateAsync(System.Guid,Planty.Data.Entities.Plant)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage("Info Code Smell", "S1309:Track uses of in-source issue suppressions", Justification = "I will supress issues")]
