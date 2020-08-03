@@ -1,5 +1,6 @@
 ﻿namespace Planty.API.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
@@ -23,6 +24,35 @@
         public async Task<IActionResult> GetAllAsync()
         {
             return Ok(await _plantService.GetAllAsync());
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(Plant), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetAsync(Guid id)
+        {
+            return Ok(await _plantService.GetByIdAsync(id));
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(PlantBase), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> CreateAsync(PlantBase model)
+        {
+            return Ok(await _plantService.CreateAsync(model));
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(Plant), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateAsync(Guid id, PlantBase model)
+        {
+            return Ok(await _plantService.UpdateAsync(id, model));
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            await _plantService.DeleteAsync(id);
+            return NoContent();
         }
     }
 }
