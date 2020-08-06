@@ -1,8 +1,9 @@
 ﻿namespace Planty.Data.Entities
 {
     using System;
+    using Planty.Data.Interfaces;
 
-    public class Plant : IProduct
+    public class Plant : IEntity
     {
         public Guid Id { get; set; }
 
