@@ -52,7 +52,7 @@
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             await _plantService.DeleteAsync(id);
-            return NoContent();
+            return Ok();
         }
     }
 }
