@@ -18,3 +18,15 @@ using System.Diagnostics.CodeAnalysis;
     Scope = "member",
     Target = "~M:Planty.Business.Services.PlantService.UpdateAsync(System.Guid,Planty.Data.Entities.Plant)~System.Threading.Tasks.Task")]
 [assembly: SuppressMessage("Info Code Smell", "S1309:Track uses of in-source issue suppressions", Justification = "I will supress issues")]
+[assembly: SuppressMessage(
+    "Design",
+    "CA1062:Validate arguments of public methods",
+    Justification = "ValidateIsNotNull",
+    Scope = "member",
+    Target = "~M:Planty.Business.Services.PlantService.CreateAsync(Planty.Business.Models.PlantBase)~System.Threading.Tasks.Task{Planty.Business.Models.Plant}")]
+[assembly: SuppressMessage(
+    "Design",
+    "CA1062:Validate arguments of public methods",
+    Justification = "ValidateIsNotNull",
+    Scope = "member",
+    Target = "~M:Planty.Business.Services.PlantService.UpdateAsync(System.Guid,Planty.Business.Models.PlantBase)~System.Threading.Tasks.Task{Planty.Business.Models.Plant}")]

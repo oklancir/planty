@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace Planty.Data.Interfaces
+﻿namespace Planty.Data.Interfaces
 {
+    using System.Threading.Tasks;
+
     public interface IDatabaseScope
     {
         Task SaveChangesAsync();

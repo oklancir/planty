@@ -30,3 +30,9 @@ using System.Diagnostics.CodeAnalysis;
     Justification = "Validation method is called",
     Scope = "member",
     Target = "~M:Planty.Data.Context.DatabaseContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)")]
+[assembly: SuppressMessage(
+    "Major Code Smell",
+    "S3900:Arguments of public methods should be validated against null",
+    Justification = "ValidateIsNotNull",
+    Scope = "member",
+    Target = "~M:Planty.Data.Context.DatabaseContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)")]
