@@ -9,6 +9,7 @@
         public MappingProfile()
         {
             CreateMap<Entities.Plant, Plant>();
+            CreateMap<Entities.User, User>();
         }
     }
 }
