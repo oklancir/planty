@@ -17,6 +17,7 @@
             _authService = authService;
         }
 
+        [Route("register")]
         [HttpPost]
         [ProducesResponseType(typeof(UserBase), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> RegisterAsync(UserBase model)

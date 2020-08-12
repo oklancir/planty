@@ -8,6 +8,7 @@ namespace Planty.API
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
     using Planty.API.Config;
     using Planty.Business;
     using Planty.Business.Services;
@@ -49,6 +50,16 @@ namespace Planty.API
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planty API V1");
+            });
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -81,11 +92,18 @@ namespace Planty.API
             services.AddScoped<IDatabaseScope, DatabaseScope>();
 
             services.AddScoped<IPlantService, PlantService>();
+            services.AddScoped<AuthenticationService>();
 
             var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
             var mapper = mapperConfig.CreateMapper();
 
             services.AddSingleton(mapper);
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(swagger =>
+            {
+                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+            });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
