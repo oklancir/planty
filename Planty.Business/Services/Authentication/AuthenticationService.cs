@@ -22,25 +22,26 @@
             _mapper = mapper;
         }
 
-        public async Task<User> RegisterAsync(UserBase user)
+        public async Task<User> RegisterAsync(UserBase model)
         {
-            user.ValidateIsNotNull(nameof(user));
+            model.ValidateIsNotNull(nameof(model));
 
             var passwordSalt = CryptographyService.CreateSalt();
-            var passwordHash = CryptographyService.CreateHash(user.Password, passwordSalt);
+            var passwordHash = CryptographyService.CreateHash(model.Password, passwordSalt);
 
-            var userEntity = new Entities.User();
-            userEntity.PasswordHash = passwordHash;
-            userEntity.PasswordSalt = passwordSalt;
-            userEntity.FirstName = user.FirstName;
-            userEntity.LastName = user.LastName;
-            userEntity.DateOfBirth = user.DateOfBirth;
-            userEntity.Email = user.Email;
+            var entity = new Entities.User();
+            entity.PasswordHash = passwordHash;
+            entity.PasswordSalt = passwordSalt;
+            entity.FirstName = model.FirstName;
+            entity.LastName = model.LastName;
+            entity.Username = model.Username;
+            entity.DateOfBirth = model.DateOfBirth;
+            entity.Email = model.Email;
 
-            await _genericRepository.InsertAsync(userEntity);
+            await _genericRepository.InsertAsync(entity);
             await _databaseScope.SaveChangesAsync();
 
-            return _mapper.Map<User>(userEntity);
+            return _mapper.Map<User>(entity);
         }
 
         public Task<User> LoginAsync(string username, string password)
