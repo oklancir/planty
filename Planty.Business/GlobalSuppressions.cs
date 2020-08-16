@@ -41,10 +41,10 @@ using System.Diagnostics.CodeAnalysis;
     "CA1062:Validate arguments of public methods",
     Justification = "ValidateIsNotNull",
     Scope = "member",
-    Target = "~M:Planty.Business.Services.User.UserService.CreateAsync(Planty.Business.Models.UserBase)~System.Threading.Tasks.Task{Planty.Business.Models.User}")]
+    Target = "~M:Planty.Business.Services.Users.UserService.CreateAsync(Planty.Business.Models.UserBase)~System.Threading.Tasks.Task{Planty.Business.Models.User}")]
 [assembly: SuppressMessage(
     "Design",
     "CA1062:Validate arguments of public methods",
     Justification = "ValidateIsNotNull",
     Scope = "member",
-    Target = "~M:Planty.Business.Services.User.UserService.UpdateAsync(System.Guid,Planty.Business.Models.UserBase)~System.Threading.Tasks.Task{Planty.Business.Models.User}")]
+    Target = "~M:Planty.Business.Services.Users.UserService.UpdateAsync(System.Guid,Planty.Business.Models.UserBase)~System.Threading.Tasks.Task{Planty.Business.Models.User}")]

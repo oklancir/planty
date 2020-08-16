@@ -1,4 +1,4 @@
-﻿namespace Planty.Business.Services.User
+﻿namespace Planty.Business.Services.Users
 {
     using System;
     using System.Collections.Generic;
