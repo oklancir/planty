@@ -24,5 +24,13 @@
         {
             return Ok(await _authService.RegisterAsync(model));
         }
+
+        [Route("login")]
+        [HttpPost]
+        [ProducesResponseType(typeof(UserBase), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> LoginAsync(string username, string password)
+        {
+            return Ok(await _authService.LoginAsync(username, password));
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿namespace Planty.Business.Services
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Microsoft.EntityFrameworkCore;
     using Planty.Business.Models;
     using Planty.Business.Services.Authentication;
     using Planty.Common.Extensions;
@@ -25,6 +27,12 @@
         public async Task<User> RegisterAsync(UserBase model)
         {
             model.ValidateIsNotNull(nameof(model));
+            var userExists = await UserExistsAsync(model.Username);
+
+            if (userExists)
+            {
+                return null;
+            }
 
             var passwordSalt = CryptographyService.CreateSalt();
             var passwordHash = CryptographyService.CreateHash(model.Password, passwordSalt);
@@ -35,6 +43,7 @@
             entity.FirstName = model.FirstName;
             entity.LastName = model.LastName;
             entity.Username = model.Username;
+
             entity.DateOfBirth = model.DateOfBirth;
             entity.Email = model.Email;
 
@@ -44,14 +53,32 @@
             return _mapper.Map<User>(entity);
         }
 
-        public Task<User> LoginAsync(string username, string password)
+        public async Task<User> LoginAsync(string username, string password)
         {
-            throw new NotImplementedException();
+            var entity = await _genericRepository.All.FirstOrDefaultAsync(user => user.Username == username);
+            entity.ValidateIsNotNull(nameof(entity));
+
+            var passwordHash = CryptographyService.CreateHash(password, entity.PasswordSalt);
+
+            if (entity.PasswordHash != passwordHash)
+            {
+                return null;
+            }
+
+            return _mapper.Map<User>(entity);
         }
 
-        public Task<bool> UserExistsAsync(string username)
+        public async Task<bool> UserExistsAsync(string username)
         {
-            throw new NotImplementedException();
+            var entity = await _genericRepository.All.FirstOrDefaultAsync(user => user.Username == username);
+            entity.ValidateIsNotNull(nameof(entity));
+
+            if (entity != null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
