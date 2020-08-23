@@ -1,7 +1,5 @@
 ﻿namespace Planty.Business.Services
 {
-    using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
     using Microsoft.EntityFrameworkCore;
@@ -28,8 +26,9 @@
         {
             model.ValidateIsNotNull(nameof(model));
             var userExists = await UserExistsAsync(model.Username);
+            var emailInUse = await EmailInUseAsync(model.Email);
 
-            if (userExists)
+            if (userExists || emailInUse)
             {
                 return null;
             }
@@ -79,6 +78,14 @@
             }
 
             return false;
+        }
+
+        public async Task<bool> EmailInUseAsync(string email)
+        {
+            var entity = await _genericRepository.All.FirstOrDefaultAsync(user => user.Email == email);
+            entity.ValidateIsNotNull(nameof(entity));
+
+            return entity != null;
         }
     }
 }
