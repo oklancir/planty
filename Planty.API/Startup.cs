@@ -8,8 +8,10 @@ namespace Planty.API
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
     using Microsoft.OpenApi.Models;
     using Planty.API.Config;
+    using Planty.API.Config.Middlewares;
     using Planty.Business;
     using Planty.Business.Services;
     using Planty.Data.Context;
@@ -27,7 +29,7 @@ namespace Planty.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env is null)
             {
@@ -36,10 +38,12 @@ namespace Planty.API
 
             if (env.IsDevelopment())
             {
+                logger.LogInformation("In Development.");
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                logger.LogInformation("Not Development.");
                 app.UseExceptionHandler("/Error");
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -59,6 +63,8 @@ namespace Planty.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planty API V1");
             });
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseRouting();
 
