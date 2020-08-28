@@ -54,7 +54,7 @@
         public async Task<User> GetByIdAsync(Guid id)
         {
             var entity = await _genericRepository.GetByIdAsync(id);
-            entity.ValidateIsNotNull(nameof(entity));
+            entity.RejectEntityNotFound(nameof(entity));
 
             return _mapper.Map<User>(entity);
         }
