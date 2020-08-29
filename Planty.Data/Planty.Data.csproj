@@ -9,6 +9,11 @@
         <AssemblyName>Planty.Data</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Migrations\20200829193355_AddEFAttributesToEntities.cs" />
+      <Compile Remove="Migrations\20200829193355_AddEFAttributesToEntities.Designer.cs" />
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
