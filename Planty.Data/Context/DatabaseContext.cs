@@ -12,7 +12,7 @@
         {
         }
 
-        public DbSet<Plant> Plants { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public DbSet<User> Users { get; set; }
 
@@ -20,7 +20,7 @@
         {
             modelBuilder.ValidateIsNotNull(nameof(modelBuilder));
 
-            modelBuilder.Entity<Plant>()
+            modelBuilder.Entity<Product>()
                 .Property(e => e.Price).HasColumnType("decimal(18,2)");
         }
     }

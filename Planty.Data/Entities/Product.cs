@@ -3,7 +3,7 @@
     using System;
     using Planty.Data.Interfaces;
 
-    public class Plant : IEntity
+    public class Product : IEntity
     {
         public Guid Id { get; set; }
 
@@ -16,5 +16,7 @@
         public string Name { get; set; }
 
         public string LatinName { get; set; }
+
+        public string Type { get; set; }
     }
 }

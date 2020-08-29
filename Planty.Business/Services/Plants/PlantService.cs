@@ -13,11 +13,11 @@
 
     public class PlantService : IPlantService
     {
-        private readonly IGenericRepository<Entities.Plant> _genericRepository;
+        private readonly IGenericRepository<Entities.Product> _genericRepository;
         private readonly IDatabaseScope _databaseScope;
         private readonly IMapper _mapper;
 
-        public PlantService(IGenericRepository<Entities.Plant> genericRepository, IDatabaseScope databaseScope, IMapper mapper)
+        public PlantService(IGenericRepository<Entities.Product> genericRepository, IDatabaseScope databaseScope, IMapper mapper)
         {
             _genericRepository = genericRepository;
             _databaseScope = databaseScope;
@@ -28,7 +28,7 @@
         {
             model.ValidateIsNotNull(nameof(model));
 
-            var entity = new Entities.Plant();
+            var entity = new Entities.Product();
             UpdateEntity(model, entity);
 
             await _genericRepository.InsertAsync(entity);
@@ -72,7 +72,7 @@
             return _mapper.Map<Plant>(entity);
         }
 
-        private static void UpdateEntity(PlantBase model, Entities.Plant entity)
+        private static void UpdateEntity(PlantBase model, Entities.Product entity)
         {
             entity.Name = model.Name;
             entity.LatinName = model.LatinName;

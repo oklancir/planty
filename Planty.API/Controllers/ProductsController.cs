@@ -10,11 +10,11 @@
 
     [Route("api/[controller]")]
     [ApiController]
-    public class PlantsController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IPlantService _plantService;
 
-        public PlantsController(IPlantService plantService)
+        public ProductsController(IPlantService plantService)
         {
             _plantService = plantService;
         }

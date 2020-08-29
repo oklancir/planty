@@ -93,7 +93,7 @@ namespace Planty.API
 
             services.AddScoped(ReadOnlyDatabaseContextFactory.Instance(Configuration));
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PlantyConnection")));
-            services.AddScoped<IGenericRepository<Plant>, GenericRepository<Plant>>();
+            services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
             services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
             services.AddScoped<IDatabaseScope, DatabaseScope>();
 

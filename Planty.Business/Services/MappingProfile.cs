@@ -8,7 +8,7 @@
     {
         public MappingProfile()
         {
-            CreateMap<Entities.Plant, Plant>();
+            CreateMap<Entities.Product, Plant>();
             CreateMap<Entities.User, User>();
         }
     }
