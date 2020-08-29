@@ -11,20 +11,20 @@
     using Planty.Data.Interfaces;
     using Entities = Planty.Data.Entities;
 
-    public class PlantService : IPlantService
+    public class ProductService : IProductService
     {
         private readonly IGenericRepository<Entities.Product> _genericRepository;
         private readonly IDatabaseScope _databaseScope;
         private readonly IMapper _mapper;
 
-        public PlantService(IGenericRepository<Entities.Product> genericRepository, IDatabaseScope databaseScope, IMapper mapper)
+        public ProductService(IGenericRepository<Entities.Product> genericRepository, IDatabaseScope databaseScope, IMapper mapper)
         {
             _genericRepository = genericRepository;
             _databaseScope = databaseScope;
             _mapper = mapper;
         }
 
-        public async Task<Plant> CreateAsync(PlantBase model)
+        public async Task<Product> CreateAsync(ProductBase model)
         {
             model.ValidateIsNotNull(nameof(model));
 
@@ -34,7 +34,7 @@
             await _genericRepository.InsertAsync(entity);
             await _databaseScope.SaveChangesAsync();
 
-            return _mapper.Map<Plant>(entity);
+            return _mapper.Map<Product>(entity);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -46,20 +46,20 @@
             await _databaseScope.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Plant>> GetAllAsync()
+        public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            return await _genericRepository.All.ProjectTo<Plant>(_mapper.ConfigurationProvider).ToListAsync();
+            return await _genericRepository.All.ProjectTo<Product>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public async Task<Plant> GetByIdAsync(Guid id)
+        public async Task<Product> GetByIdAsync(Guid id)
         {
             var entity = await _genericRepository.GetByIdAsync(id);
             entity.ValidateIsNotNull(nameof(entity));
 
-            return _mapper.Map<Plant>(entity);
+            return _mapper.Map<Product>(entity);
         }
 
-        public async Task<Plant> UpdateAsync(Guid id, PlantBase model)
+        public async Task<Product> UpdateAsync(Guid id, ProductBase model)
         {
             model.ValidateIsNotNull(nameof(model));
 
@@ -69,10 +69,10 @@
 
             await _databaseScope.SaveChangesAsync();
 
-            return _mapper.Map<Plant>(entity);
+            return _mapper.Map<Product>(entity);
         }
 
-        private static void UpdateEntity(PlantBase model, Entities.Product entity)
+        private static void UpdateEntity(ProductBase model, Entities.Product entity)
         {
             entity.Name = model.Name;
             entity.LatinName = model.LatinName;

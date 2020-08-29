@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Plant : PlantBase
+    public class Product : ProductBase
     {
         public Guid Id { get; set; }
     }

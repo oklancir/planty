@@ -97,7 +97,7 @@ namespace Planty.API
             services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
             services.AddScoped<IDatabaseScope, DatabaseScope>();
 
-            services.AddScoped<IPlantService, PlantService>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddScoped<AuthenticationService>();
 
             var mapperConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));

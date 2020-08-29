@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class PlantBase
+    public class ProductBase
     {
         public DateTime CreatedAt { get; set; }
 
@@ -13,5 +13,7 @@
         public string Name { get; set; }
 
         public string LatinName { get; set; }
+
+        public string Type { get; set; }
     }
 }
