@@ -16,7 +16,5 @@
         public string Name { get; set; }
 
         public string LatinName { get; set; }
-
-        public string Type { get; set; }
     }
 }
